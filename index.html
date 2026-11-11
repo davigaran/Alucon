@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alucon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="logo">Alucon</div>
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Buscar...">
+        </div>
+        <div class="nav-actions">
+            <button class="icon-btn"><i class="fa-regular fa-bell"></i><span class="badge"></span></button>
+            <div class="user-avatar small blue-bg">AJ</div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <!-- Main Left Sidebar -->
+        <nav class="main-sidebar" id="main-sidebar">
+            <ul class="nav-links">
+                <li class="active" onclick="switchView('home', this)"><i class="fa-solid fa-house"></i> Inicio</li>
+                <li onclick="switchView('publish', this)"><i class="fa-solid fa-plus"></i> Publicar</li>
+                <li onclick="switchView('following', this)"><i class="fa-solid fa-user-group"></i> Siguiendo</li>
+                <li onclick="switchView('projects', this)"><i class="fa-regular fa-folder"></i> Proyectos</li>
+                <li onclick="switchView('chat', this)"><i class="fa-regular fa-comment"></i> Chat</li>
+                <li onclick="switchView('settings', this)"><i class="fa-solid fa-gear"></i> Configuración</li>
+            </ul>
+        </nav>
+
+        <!-- Publish Specific Sidebar (Hidden by default) -->
+        <nav class="publish-sidebar hidden" id="publish-sidebar">
+            <div class="cancel-btn" onclick="switchView('home', document.querySelector('.nav-links li'))">
+                <i class="fa-solid fa-arrow-left"></i> Cancelar
+            </div>
+            <div class="publish-options-card">
+                <h4>Agrega contenido</h4>
+                <div class="option-item">
+                    <i class="fa-regular fa-image"></i>
+                    <span>Agregar imágenes, GIF o encuesta</span>
+                </div>
+                <div class="option-item">
+                    <i class="fa-regular fa-folder-plus"></i>
+                    <span>Adjuntar proyecto a la publicación</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            
+            <!-- HOME VIEW -->
+            <section id="view-home" class="view-section">
+                <div class="feed">
+                    <!-- Post 1 -->
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="user-info">
+                                <div class="user-avatar small gray-bg">S</div>
+                                <div>
+                                    <span class="user-name">Sara Jiménez</span> · <span class="post-time">hace 2h</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-ellipsis menu-dots"></i>
+                        </div>
+                        <h3 class="post-title">¿Cuáles son las mejores prácticas para aprender React en 2025?</h3>
+                        <div class="answer-box">
+                            <div class="answer-author"><span class="text-blue">Miguel Chávez</span> respondió:</div>
+                            <p class="answer-text">Comienza con la documentación oficial de React y construye proyectos pequeños. Concéntrate en entender los hooks, el manejo del estado y la composición de componentes. La práctica es clave: crea aplicaciones del mundo real y contribuye a...</p>
+                        </div>
+                        <div class="post-actions">
+                            <div class="action"><i class="fa-regular fa-thumbs-up"></i> 45</div>
+                            <div class="action"><i class="fa-regular fa-comment"></i> 12 Respuestas</div>
+                            <div class="action"><i class="fa-solid fa-share-nodes"></i> Compartir</div>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 -->
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="user-info">
+                                <div class="user-avatar small gray-bg">D</div>
+                                <div>
+                                    <span class="user-name">David Kim</span> · <span class="post-time">hace 4h</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-ellipsis menu-dots"></i>
+                        </div>
+                        <h3 class="post-title">¿En qué se diferencia el aprendizaje automático del aprendizaje profundo?</h3>
+                        <div class="answer-box">
+                            <div class="answer-author"><span class="text-blue">Dra. Emily Rodríguez</span> respondió:</div>
+                            <p class="answer-text">El aprendizaje automático es un concepto más amplio que incluye diversos algoritmos para hacer predicciones. El aprendizaje profundo es un subconjunto del ML que utiliza redes neuronales con múltiples capas. El deep learning destaca en el procesamiento de...</p>
+                        </div>
+                        <div class="post-actions">
+                            <div class="action"><i class="fa-regular fa-thumbs-up"></i> 32</div>
+                            <div class="action"><i class="fa-regular fa-comment"></i> 8 Respuestas</div>
+                            <div class="action"><i class="fa-solid fa-share-nodes"></i> Compartir</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOLLOWING VIEW -->
+            <section id="view-following" class="view-section hidden">
+                <div class="following-stories card">
+                    <h4 class="mb-3">Personas que sigues</h4>
+                    <div class="stories-scroll">
+                        <div class="story"><div class="user-avatar medium blue-bg">ST</div><span>Sofia</span></div>
+                        <div class="story"><div class="user-avatar medium green-bg">DH</div><span>Diego</span></div>
+                        <div class="story"><div class="user-avatar medium purple-bg">CL</div><span>Camila</span></div>
+                        <div class="story"><div class="user-avatar medium yellow-bg">MR</div><span>Mateo</span></div>
+                        <div class="story"><div class="user-avatar medium red-bg">VC</div><span>Valeria</span></div>
+                        <div class="story"><div class="user-avatar medium cyan-bg">AM</div><span>Alejandro</span></div>
+                    </div>
+                </div>
+                
+                <div class="feed-header">
+                    <h3>Publicaciones recientes</h3>
+                    <span class="text-muted text-sm">De personas que sigues</span>
+                </div>
+                
+                <div class="feed">
+                     <!-- Post (Same structure) -->
+                     <div class="post-card">
+                        <div class="post-header">
+                            <div class="user-info">
+                                <div class="user-avatar small gray-bg">S</div>
+                                <div>
+                                    <span class="user-name">Sofia Torres</span> · <span class="post-time">hace 35 min</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-ellipsis menu-dots"></i>
+                        </div>
+                        <h3 class="post-title">¿Qué recursos recomiendan para preparar el próximo examen de matemáticas?</h3>
+                        <div class="answer-box">
+                            <div class="answer-author"><span class="text-blue">Mateo Ruiz</span> respondió:</div>
+                            <p class="answer-text">A mí me ayudó mucho repasar las guías de clase y resolver los ejercicios del capítulo 4. También armamos un documento compartido con problemas resueltos paso a paso.</p>
+                        </div>
+                        <div class="post-actions">
+                            <div class="action"><i class="fa-regular fa-thumbs-up"></i> 28</div>
+                            <div class="action"><i class="fa-regular fa-comment"></i> 7 Respuestas</div>
+                            <div class="action"><i class="fa-solid fa-share-nodes"></i> Compartir</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PUBLISH VIEW -->
+            <section id="view-publish" class="view-section hidden">
+                <div class="publish-container card">
+                    <div class="publish-header">
+                        <div class="user-avatar small blue-bg">AJ</div>
+                        <div>
+                            <div class="user-name">Andrea Jiménez</div>
+                            <div class="text-muted text-sm">Crear una publicación</div>
+                        </div>
+                    </div>
+                    
+                    <div class="publish-body">
+                        <h2>¿Qué es lo que sucedió?</h2>
+                        <button class="privacy-btn"><i class="fa-solid fa-globe"></i> Toda la comunidad <i class="fa-solid fa-chevron-down text-xs"></i></button>
+                        
+                        <textarea placeholder="Comparte una idea, una pregunta o algo que aprendiste hoy..."></textarea>
+                        
+                        <div class="publish-attachments">
+                            <span><i class="fa-regular fa-image"></i> Imagen o GIF</span>
+                            <span><i class="fa-solid fa-arrow-right-arrow-left"></i> Encuesta</span>
+                            <span><i class="fa-solid fa-paperclip"></i> Proyecto</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publish-footer">
+                        <button class="btn btn-outline">Borradores</button>
+                        <button class="btn btn-primary" style="opacity: 0.5;">Publicar</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS VIEW -->
+            <section id="view-projects" class="view-section hidden">
+                <div class="projects-header card">
+                    <div>
+                        <h2>Mis proyectos</h2>
+                        <p class="text-muted">Organiza tus ideas, trabajos y proyectos escolares.</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openProjectModal()"><i class="fa-solid fa-plus"></i> Añadir proyecto</button>
+                </div>
+
+                <div class="projects-section card mt-4">
+                    <div class="section-header">
+                        <div>
+                            <h3>Proyectos en los que participo</h3>
+                            <p class="text-muted text-sm">Desliza horizontalmente para ver todos tus proyectos.</p>
+                        </div>
+                        <span class="text-muted text-sm">3 proyectos</span>
+                    </div>
+                    
+                    <div class="projects-scroll">
+                        <!-- Project Card 1 -->
+                        <div class="project-card-mini blue-tint">
+                            <div class="project-actions">
+                                <button onclick="editProject(1)"><i class="fa-solid fa-pen"></i></button>
+                                <button><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                            <div class="project-image-icon"><i class="fa-solid fa-folder-open text-blue"></i></div>
+                            <h4>Huerto escolar inteligente</h4>
+                            <span class="tag blue-tag"><i class="fa-solid fa-tag"></i> Tecnología</span>
+                            <p class="text-muted text-xs mt-2"><i class="fa-regular fa-calendar"></i> Actualizado hoy</p>
+                        </div>
+
+                        <!-- Project Card 2 -->
+                        <div class="project-card-mini purple-tint">
+                            <div class="project-actions">
+                                <button onclick="editProject(2)"><i class="fa-solid fa-pen"></i></button>
+                                <button><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                            <div class="project-image-icon"><i class="fa-solid fa-folder-open text-purple"></i></div>
+                            <h4>Biblioteca de apuntes</h4>
+                            <span class="tag purple-tag"><i class="fa-solid fa-tag"></i> Educación</span>
+                            <p class="text-muted text-xs mt-2"><i class="fa-regular fa-calendar"></i> Actualizado ayer</p>
+                        </div>
+
+                         <!-- Project Card 3 -->
+                         <div class="project-card-mini yellow-tint">
+                            <div class="project-actions">
+                                <button onclick="editProject(3)"><i class="fa-solid fa-pen"></i></button>
+                                <button><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                            <div class="project-image-icon"><i class="fa-solid fa-folder-open text-yellow"></i></div>
+                            <h4>Feria de ciencias 2026</h4>
+                            <span class="tag yellow-tag"><i class="fa-solid fa-tag"></i> Ciencias</span>
+                            <p class="text-muted text-xs mt-2"><i class="fa-regular fa-calendar"></i> Actualizado hace 3 días</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="projects-section card mt-4">
+                    <div class="section-header">
+                        <div>
+                            <h3>Proyectos a los que puedes unirte</h3>
+                            <p class="text-muted text-sm">Descubre iniciativas de tu comunidad que están buscando participantes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-filters">
+                        <div class="search-bar small-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Buscar por nombre o etiqueta...">
+                        </div>
+                        <select class="filter-select">
+                            <option>Todas las etiquetas</option>
+                            <option>Tecnología</option>
+                            <option>Ciencias</option>
+                            <option>Arte</option>
+                        </select>
+                    </div>
+                    <div class="text-center text-muted mt-4 p-4">
+                        Cargando proyectos disponibles...
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHAT VIEW -->
+            <section id="view-chat" class="view-section hidden chat-view">
+                <!-- Chat Main Area -->
+                <div class="chat-main card">
+                    <div class="chat-header">
+                        <div class="user-info">
+                            <div class="user-avatar medium blue-tint text-blue">5B</div>
+                            <div>
+                                <h3 class="user-name">Amigos de 5BMP</h3>
+                                <span class="text-muted text-sm"><i class="fa-solid fa-user-group"></i> 8 integrantes</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-ellipsis menu-dots"></i>
+                    </div>
+                    
+                    <div class="pinned-message">
+                        <i class="fa-solid fa-thumbtack text-blue"></i>
+                        <div>
+                            <div class="text-xs text-muted">Mensaje fijado</div>
+                            <div class="text-sm">¿Ya revisaron el aviso de la conferencia de esta tarde?</div>
+                        </div>
+                        <button class="text-sm text-muted btn-link">Quitar</button>
+                    </div>
+
+                    <div class="chat-history">
+                        <div class="date-divider">Hoy</div>
+                        
+                        <div class="message received">
+                            <div class="user-avatar tiny gray-bg">M</div>
+                            <div class="message-content">
+                                <div class="message-author">Mateo</div>
+                                <div class="bubble">¿Ya revisaron el aviso de la conferencia de esta tarde?</div>
+                                <div class="message-time">10:12</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message received">
+                            <div class="user-avatar tiny gray-bg">S</div>
+                            <div class="message-content">
+                                <div class="message-author">Sofia</div>
+                                <div class="bubble">Sí, tenemos que estar en el auditorio a las 2:00.</div>
+                                <div class="message-time">10:14</div>
+                            </div>
+                        </div>
+
+                        <div class="message sent">
+                            <div class="message-content">
+                                <div class="bubble bg-blue text-white">Perfecto. Nos podemos reunir en la entrada cinco minutos antes.</div>
+                                <div class="message-time">10:16</div>
+                            </div>
+                        </div>
+
+                        <div class="message received">
+                            <div class="user-avatar tiny gray-bg">M</div>
+                            <div class="message-content">
+                                <div class="message-author">Mateo</div>
+                                <div class="bubble">Nos vemos a las 2:00.</div>
+                                <div class="message-time">10:18</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <button class="icon-btn"><i class="fa-solid fa-plus"></i></button>
+                        <div class="input-wrapper">
+                            <input type="text" placeholder="Escribe un mensaje...">
+                            <button class="icon-btn mic-btn"><i class="fa-solid fa-microphone"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Right Sidebar (Messages List) -->
+                <div class="chat-sidebar">
+                    <h3>Mensajes</h3>
+                    <div class="search-bar small-search mb-4">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Buscar chat...">
+                    </div>
+                    
+                    <div class="chat-tabs">
+                        <button class="active">Chats y grupos</button>
+                        <button>Proyectos</button>
+                    </div>
+
+                    <div class="chat-list">
+                        <div class="chat-list-item">
+                            <div class="user-avatar medium purple-bg">ST</div>
+                            <div class="chat-info">
+                                <div class="chat-name-row">
+                                    <span class="user-name">Sofia Torres</span>
+                                    <span class="text-xs text-muted">10:42</span>
+                                </div>
+                                <div class="text-sm text-muted text-ellipsis">Claro, te envío mis apuntes.</div>
+                            </div>
+                        </div>
+
+                        <div class="chat-list-item active-chat">
+                            <div class="user-avatar medium blue-tint text-blue font-bold">5B</div>
+                            <div class="chat-info">
+                                <div class="chat-name-row">
+                                    <span class="user-name">Amigos de 5BMP</span>
+                                    <span class="text-xs text-muted">10:18</span>
+                                </div>
+                                <div class="text-sm text-muted text-ellipsis">Mateo: Nos vemos a las 2:00.</div>
+                            </div>
+                        </div>
+
+                        <div class="chat-list-item">
+                            <div class="user-avatar medium green-bg">EC</div>
+                            <div class="chat-info">
+                                <div class="chat-name-row">
+                                    <span class="user-name">Equipo de ciencias</span>
+                                    <span class="text-xs text-muted">Ayer</span>
+                                </div>
+                                <div class="text-sm text-muted text-ellipsis">Camila compartió un archivo.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SETTINGS VIEW -->
+            <section id="view-settings" class="view-section hidden">
+                <div class="settings-header">
+                    <h2>Configuración</h2>
+                    <p class="text-muted">Administra tu cuenta y personaliza tu experiencia en Alucon.</p>
+                </div>
+
+                <div class="settings-layout card">
+                    <div class="settings-nav">
+                        <div class="settings-nav-item active">
+                            <div class="icon-circle"><i class="fa-solid fa-ban"></i></div>
+                            <div>
+                                <div class="font-medium text-blue">Bloqueados</div>
+                                <div class="text-xs text-muted">Administra las cuentas que bloque...</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-muted text-sm"></i>
+                        </div>
+                        <div class="settings-nav-item">
+                            <div class="icon-circle"><i class="fa-solid fa-at"></i></div>
+                            <div>
+                                <div class="font-medium">Etiquetas y menciones</div>
+                                <div class="text-xs text-muted">Elige quién puede etiquetarte</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-muted text-sm"></i>
+                        </div>
+                        <div class="settings-nav-item">
+                            <div class="icon-circle"><i class="fa-solid fa-language"></i></div>
+                            <div>
+                                <div class="font-medium">Idioma y traducciones</div>
+                                <div class="text-xs text-muted">Configura el idioma del contenido</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-muted text-sm"></i>
+                        </div>
+                        <div class="settings-nav-item">
+                            <div class="icon-circle"><i class="fa-solid fa-universal-access"></i></div>
+                            <div>
+                                <div class="font-medium">Accesibilidad</div>
+                                <div class="text-xs text-muted">Ajusta tu experiencia de lectura</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-muted text-sm"></i>
+                        </div>
+                        <div class="settings-nav-item">
+                            <div class="icon-circle"><i class="fa-solid fa-mobile-screen"></i></div>
+                            <div>
+                                <div class="font-medium">Permisos del dispositivo</div>
+                                <div class="text-xs text-muted">Cámara, micrófono y notificaciones</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-muted text-sm"></i>
+                        </div>
+                        <div class="settings-nav-item">
+                            <div class="icon-circle"><i class="fa-solid fa-user-plus"></i></div>
+                            <div>
+                                <div class="font-medium">Agregar perfil</div>
+                                <div class="text-xs text-muted">Usa otra cuenta en este dispositivo</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-muted text-sm"></i>
+                        </div>
+                        <div class="settings-nav-item">
+                            <div class="icon-circle"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>
+                            <div>
+                                <div class="font-medium">Cerrar sesión</div>
+                                <div class="text-xs text-muted">Salir de Alucon en este dispositivo</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-muted text-sm"></i>
+                        </div>
+                        <div class="settings-nav-item text-red">
+                            <div class="icon-circle text-red"><i class="fa-solid fa-trash"></i></div>
+                            <div>
+                                <div class="font-medium">Borrar cuenta</div>
+                                <div class="text-xs text-muted">Eliminar tu cuenta de forma perma...</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-muted text-sm"></i>
+                        </div>
+                    </div>
+
+                    <div class="settings-content">
+                        <h3>Bloqueados</h3>
+                        <p class="text-muted text-sm mt-1 mb-4">Las personas que bloquees no podrán ver tu perfil, mencionarte ni interactuar contigo.</p>
+                        
+                        <div class="empty-state">
+                            <div class="empty-icon bg-blue-tint text-blue"><i class="fa-solid fa-shield-check"></i></div>
+                            <h4>No tienes cuentas bloqueadas</h4>
+                            <p class="text-muted text-sm">Cuando bloquees a alguien, aparecerá en esta lista para que puedas administrar el bloqueo.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Global Right Sidebar (Avisos) -->
+        <aside class="right-sidebar" id="right-sidebar">
+            <div class="card avisos-card">
+                <h3 class="mb-4"><i class="fa-solid fa-arrow-trend-up text-blue"></i> Avisos</h3>
+                <div class="aviso-item">
+                    Conferencia hoy: Control de adicciones para grupos 5BMP y 3BMC a las 2:00pm en el auditorio principal.
+                </div>
+                <div class="aviso-item">
+                    Recordatorio: Entrega de trabajos del período en secretaría antes del viernes 16 de octubre.
+                </div>
+                <div class="aviso-item">
+                    Taller de orientación vocacional el jueves 15 de octubre a las 10:00am, sala de usos múltiples.
+                </div>
+                <div class="aviso-item">
+                    Suspensión de clases el lunes 19 de octubre por capacitación docente. Actividades virtuales asignadas.
+                </div>
+                <div class="aviso-item">
+                    Semana cultural: Inscripciones abiertas para participar en el festival artístico del 22 al 24 de octubre.
+                </div>
+                <div class="aviso-item">
+                    Reunión de padres de familia para grupos de primer año el martes 20 de octubre a las 5:00pm.
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Help Floating Button -->
+    <button class="help-btn"><i class="fa-solid fa-question"></i></button>
+
+    <!-- Project Modal (Hidden) -->
+    <div id="project-modal" class="modal-overlay hidden">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h3 id="modal-title">Añadir Proyecto</h3>
+                <button onclick="closeProjectModal()" class="icon-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <label>Nombre del proyecto</label>
+                <input type="text" placeholder="Ej. Huerto escolar">
+                
+                <label class="mt-4">Descripción</label>
+                <textarea placeholder="Describe tu proyecto..." style="height: 80px;"></textarea>
+                
+                <label class="mt-4">Etiqueta (Tag)</label>
+                <select>
+                    <option>Tecnología</option>
+                    <option>Educación</option>
+                    <option>Ciencias</option>
+                    <option>Arte</option>
+                    <option>Otro</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeProjectModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="closeProjectModal()">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
